@@ -84,30 +84,42 @@ li {
 table {
   width: 100%;
   /*Ezután bővítsen!*/
+  border: dashed green 3px;
 
 }
 
 span {
   color:red; 
   /*Ezután bővítsen!*/
-
+  font-weight: 700;
+  font-variant: small-caps;
 }
 
-/*
-? {
-  background-color: darkblue;  
+.benchmark:hover{
   color: aqua;
+  background-color: darkblue;
 }
-*/
 
 h3 {
   /*Ezután bővítsen!*/
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 th {
   text-align: center;
   /*Ezután bővítsen!*/
+  background-color: rgb(223, 185, 223);
+  font-size: 1.2rem;
 }
 
 /*─────────────────────────────────────────────────────────────────────────────
 ↓ Új szelektorokat innentől kezdve vigyen fel! */
+
+#bentebb{
+  text-indent: 40px;
+}
+
+p{
+  text-align: justify;
+}

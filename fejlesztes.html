@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 
 <head>
-  <title></title>
+  <title>Fejlesztés</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="benchmark.css">
   <script src="js/bootstrap.min.js"></script>
+  <script src="tablakezelo.js"></script>
 </head>
 
 <body>
-  <div></div>
+  <div id="hatterkep"></div>
 
   <div class="text-center csik">
     <h1>Számítógépek fejlesztése</h1>
@@ -26,18 +29,33 @@
 
     <div class="row">
 
-      <div class="col-md-6 bg-hardver">
+      <div class="col-md-4 bg-hardver">
         <h3>Processzor</h3>
         <p class="definicio">Processzornak nevezzük azt az eszközt, amely végrehajtja a számítógépes programokat és vezérli a feldolgozási folyamatokat.</p>
         <p>A processzor teljesítményét elsősorban az órajel határozza meg. A 2 GHz-es órajel azt jelenti, hogy a processzor 1 másodperc alatt 2 milliárd műveletet elvégzésére képes. Minél nagyobb az órajel, annál nagyobb a processzor teljesítménye. A processzor angol nevéből származó rövidítés a CPU.</p>
+        <img src="cpu.jpg" title="LHA tokozás" class="img-thumbnail">
         <p>Minden processzor tartalmaz adott számú</p>
-        tárolóegységet (regisztert),
-        aritmetikai-logikai egységet (ALU)
-        és vezérlőegységet (CU)
-        <p>tipp A processzor cseréjével gyorsabbá tehetjük a programok futását, rövidül a számolási idő.</p>
+        <ul>
+          <li>tárolóegységet (regisztert),</li>
+          <li>aritmetikai-logikai egységet (ALU)</li>
+          <li>és vezérlőegységet (CU)</li>
+        </ul>
+        <p><span>tipp</span>A processzor cseréjével gyorsabbá tehetjük a programok futását, rövidül a számolási idő.</p>
       </div>
 
-      <div class="col-md-6 bg-hardver">
+      <div class="col-md-4" >
+        <h3>Memória</h3>
+        <p class="definicio">A memória a számítógép működéséhez szükséges programot és program futásához szükséges adatokat tárolja</p>
+        <p>Hagyományosan az elsődleges memória a processzor által aktívan használt, igen gyors elérésű memória, amelyet a futó programok használnak. Ide tartoznak a processzor regiszterei, a processzorban vagy azon kívül megvalósított gyorsítótárak és a számítógépben található operatív tár. Ezek leggyakrabban nem maradandó tárolók, tartalmukat a tápfeszültség megszűnésével elvesztik. Az operatív memóriát fő memóriának vagy központi memóriának is nevezik.
+        </p>
+        <a href="webforras.txt" target="_blank"><img src="RAM.png"></a>
+        <p><span>tipp</span>A memóriamennyiség növelésével a programokon belül gyorsabb válaszidőket érhetünk el. A nagyméretű adatokkal történő munkavégzés (filmszerkesztés, játék) igényli a sok memóriát. Ma már egy Windows 10-es rendszer optimális futtatásához a 8GB memória ajánlott.
+
+        </p>
+          
+      </div>
+
+      <div class="col-md-4 bg-hardver">
         <h3>Háttértár</h3>
         <p class="definicio">
           A háttértár olyan számítógépes hardverelem, mely nagymennyiségű adatot képes tárolni és azokat a számítógép kikapcsolása után is megőrzi.
@@ -49,7 +67,7 @@
         <p>Milyen sebességgel lehet írni és olvasni? <br>DVD-ROM 16X: kb.22MB/sec, <br>HDD:100-200MB/sec,<br> NVMe SSD : 2000-5000MB/sec </p>
         <h5>elérési idő</h5>
         <p>Mennyi idő múlva áll rendelkezésre az olvasás után a hivatkozott adat, pld. HDD:10-20ms, SSD kevesebb mint 0.2ms</p>
-        <p>tipp A rendszerfájlokat és programokat tartalmazó forgótányéros HDD helyett, használjunk NVMe SSD szilárdtest meghajtót. Nagyságrenddel nagyobb átviteli sebesség és villámgyors betöltés lesz a fejlesztés eredménye.</p>
+        <p><span>tipp</span>A rendszerfájlokat és programokat tartalmazó forgótányéros HDD helyett, használjunk NVMe SSD szilárdtest meghajtót. Nagyságrenddel nagyobb átviteli sebesség és villámgyors betöltés lesz a fejlesztés eredménye.</p>
       </div>
 
     </div>
@@ -59,7 +77,7 @@
       <div class="col-md-4">
         <h3>Benchmark oldalak</h3>
         <p>Több oldal található az Interneten, ahol sok évre visszamenően fellelhetők hardver eszközök specifikációi és azok sebességindexei.</p>
-        <div class="benchmark">CPU benchmark</div>
+        <div class="benchmark"><a href="https://www.cpubenchmark.net/">CPU benchmark</a></div>
         <div class="benchmark">HDD benchmark</div>
         <div class="benchmark">RAM benchmark</div>
       </div>
@@ -67,16 +85,36 @@
       <div class="col-md-8">
         <h3>Tesztadatok</h3>
 
-        <table>
+        <form>
+          <label for="tnev">Eszköz neve:</label>
+          <input type="text" name="" id="tnev">
+          <br>
+          <select id="tegyseg">
+            <option value="">Kb/sec</option>
+            <option value="">KB/sec</option>
+            <option selected value="">MB/sec</option>
+            <option value="">GB/sec</option>
+            <option value="">TB/sec</option>
+          </select>
+          <label for="tertek">Átviteli sebesség:</label>
+          <input type="number" name="" id="tertek" min="0">
+          <input type="button" value="Rögzít" onclick="sortRogzit()" class="btn-danger">
+        </form>
+
+        <table class="table table-striped">
           <thead>
             <tr>
-              <td>Eszközök tesztadatai</td>
+              <th colspan="2">Eszközök tesztadatai</th>
               <td></td>
             </tr>
           </thead>
           <tr>
             <td>Samsung 980 PRO 1TB NMVe SSD</td>
             <td>4358MB/sec</td>
+          </tr>
+          <tr>
+            <td>Kingston KF3733C19D4/16GX 16GB DDR4 RAM</td>
+            <td>18.5GB/sec</td>
           </tr>
           <tr>
             <td>Seagate Barracuda 3TB 7200rpm 3,5" HDD</td>
